@@ -30,24 +30,24 @@ const ItemScrollView = () => {
       {/*header for select/deselect all button*/}
       <View style={styles.header}>
         <View style={styles.selectbutton}>
-        <Button 
-        color='white'
-        title='Select All'
-        onPress={()=>{
-          setAllSelected(true)
-          //console.log(allSelected)
-        }}/>
+          <Button 
+          color='white'
+          title='Select All'
+          onPress={()=>{
+            setAllSelected(true)
+            //console.log(allSelected)
+          }}/>
         </View>
 
         <View style={styles.deselectbutton}>
-        <Button 
-        color='white'
-        title='Deselect All'
-        onPress={()=>{
-          setAllSelected(false)
-          //console.log(allSelected)
-        }}
-        />
+          <Button 
+          color='white'
+          title='Deselect All'
+          onPress={()=>{
+            setAllSelected(false)
+            //console.log(allSelected)
+          }}
+          />
         </View>
         
       </View>
