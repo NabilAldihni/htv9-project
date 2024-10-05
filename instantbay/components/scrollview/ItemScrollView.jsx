@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FlatList, View, StyleSheet, Button } from 'react-native'
+import { FlatList, View, StyleSheet, TouchableOpacity, Text } from 'react-native'
 import SellerItem from './SellerItem'
 
 const sellerItems = []
@@ -20,21 +20,26 @@ const ItemScrollView = () => {
     <View style={styles.container}>
       {/*header for select/deselect all button*/}
       <View style={styles.header}>
-        <Button title='Select All'
-        onPress={()=>{
-          if(allSelected===false){
-            setAllSelected(true)
-          }
-          //console.log(allSelected)
-        }}/>
-        <Button title='Deselect All'
-        onPress={()=>{
-          if(allSelected===true){
-            setAllSelected(false)
-          }
-          //console.log(allSelected)
-        }}
-        />
+        <TouchableOpacity 
+          style={styles.button}
+          onPress={() => {
+            if(allSelected === false){
+              setAllSelected(true)
+            }
+          }}
+        >
+          <Text style={styles.buttonText}>Select All</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+          style={styles.button}
+          onPress={() => {
+            if(allSelected === true){
+              setAllSelected(false)
+            }
+          }}
+        >
+          <Text style={styles.buttonText}>Deselect All</Text>
+        </TouchableOpacity>
       </View>
       {/*ScrollView - (switched to flatlist component but essentially the same thing in our use case)*/}
       <FlatList
@@ -49,7 +54,11 @@ const ItemScrollView = () => {
         horizontal={false}
       />
       {/*footer for sell confirmation button*/}
-      <View style={styles.footer}><Button title='Sell Selected Items'/></View>      
+      <View style={styles.footer}>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Sell Selected Items</Text>
+        </TouchableOpacity>
+      </View>      
     </View>
   )
 }
@@ -86,6 +95,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 10,
         maxWidth:'50%'
+    },
+    button: {
+      backgroundColor: '#45CB85',
+      padding: 10
+    },
+    buttonText: {
+      color: 'white',
+      fontSize: 16
     }
 })
 
