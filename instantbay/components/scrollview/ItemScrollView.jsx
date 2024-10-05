@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { FlatList, View, StyleSheet, TouchableOpacity, Text, ActivityIndicator, Button } from 'react-native'
+import { FlatList, View, StyleSheet, TouchableOpacity, Text, ActivityIndicator, TextInput } from 'react-native'
 import SellerItem from './SellerItem'
 
 const ItemScrollView = () => {
@@ -7,6 +7,7 @@ const ItemScrollView = () => {
   const [deselectedAll, setDeselectedAll] = useState(false)
   const [sellerItems, setSellerItems] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [editedItems, setEditedItems] = useState({});
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -59,6 +60,24 @@ const ItemScrollView = () => {
     );
   }
 
+  const handleItemChange = (id, field, value) => {
+    setEditedItems(prev => ({
+      ...prev,
+      [id]: {
+        ...prev[id],
+        [field]: value
+      }
+    }));
+  };
+
+  const updateItemValues = (id) => {
+    setSellerItems(prevItems => 
+      prevItems.map(item => 
+        item.id === id ? { ...item, ...editedItems[id] } : item
+      )
+    );
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -90,9 +109,29 @@ const ItemScrollView = () => {
         renderItem={({ item }) => 
           <View style={styles.itemContainer}>
             <SellerItem forceSelect={selectedAll} forceDeselect={deselectedAll} name={item.name} price={item.price} />
-            <Button title='Edit Values' onPress={()=>{
+            <View style={{padding:5, backgroundColor: '#F5F5F7', borderRadius:5}}>
+              <View style={styles.textinput}>
+
+                <Text style={{paddingHorizontal:12, fontWeight:'bold'}}>Name:</Text>
+                <TextInput style={{paddingHorizontal:15}} defaultValue={item.name}
+                onChangeText={(text) => handleItemChange(item.id, 'name', text)}
+                inputMode='text' multiline={false}/>
               
-            }}/>
+              </View>
+              <View style={styles.textinput}>
+
+                <Text style={{paddingHorizontal:15, fontWeight:'bold'}}>Price:</Text>
+                <TextInput style={{paddingHorizontal:15}} defaultValue={item.price}
+                onChangeText={(text) => handleItemChange(item.id, 'price', text)}
+                inputMode='numeric' multiline={false}/>
+
+              </View>
+            </View>
+            <TouchableOpacity onPress={() => updateItemValues(item.id)}>
+              <View style={styles.editButton} onPress={()=>{setEditVisible(true)}}>
+                <Text style={styles.buttonText}>Update Values</Text>
+              </View>
+            </TouchableOpacity>
           </View>
         }
       />
@@ -137,23 +176,24 @@ const styles = StyleSheet.create({
   },
   list: {
     flex: 1,
+    backgroundColor: '#E6E8E6'
   },
   itemContainer: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#fff',
     marginHorizontal: 16,
     marginVertical: 8,
     borderRadius: 12,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowRadius: 2,
     elevation: 3,
   },
   footer: {
     padding: 16,
     backgroundColor: '#FFFFFF',
     borderTopWidth: 1,
-    borderTopColor: '#E5E5E5',
+    borderTopColor: '#E5E5E5'
   },
   sellButton: {
     backgroundColor: '#34C759',
@@ -180,6 +220,28 @@ const styles = StyleSheet.create({
   loadingText: {
     marginTop: 10,
     fontSize: 16,
+  },
+  editButton: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 7,
+    backgroundColor: '#E75A7C',
+    borderRadius: 10,
+    width: '100%'
+  },
+  textinput:{
+    fontWeight: '600',
+    backgroundColor:'#F5F5F7',
+    padding: 5,
+    width: '50%',
+    flexDirection:'row'
   }
 })
 

@@ -30,8 +30,8 @@ const SellerItem = (props) => {
         onPress={handleCheckboxPress}
       />
       <View style={styles.contentcontainer}>
-        <Text>{props.name}</Text>
-        <Text>{props.price}</Text>
+        <Text style={{fontWeight:'bold', fontSize: 17, padding:8, color:'#1D1D1F'}}>{props.name}</Text>
+        <Text style={{fontWeight:'bold', fontSize: 17, padding:8, color:'#1D1D1F'}}>{props.price}</Text>
       </View>
     </View>
   )
