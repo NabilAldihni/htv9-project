@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { FlatList, View, StyleSheet, TouchableOpacity, Text, ActivityIndicator } from 'react-native'
+import { FlatList, View, StyleSheet, TouchableOpacity, Text, ActivityIndicator, Button } from 'react-native'
 import SellerItem from './SellerItem'
 
 const ItemScrollView = () => {
@@ -87,6 +87,9 @@ const ItemScrollView = () => {
         renderItem={({ item }) => 
           <View style={styles.itemContainer}>
             <SellerItem forceSelect={selectedAll} forceDeselect={deselectedAll} name={item.name} price={item.price} />
+            <Button title='Edit Values' onPress={()=>{
+              
+            }}/>
           </View>
         }
       />
