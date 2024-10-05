@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
       flexDirection:'row',
       backgroundColor: 'grey',
       padding: 20,
-      borderRadius: 10
+      borderRadius: 10,
+      width: '70%'
     },
     contentcontainer:{
       backgroundColor:'#F5F5F7',

@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row-reverse',
       justifyContent:'space-evenly',
       paddingVertical: 15,
+      width:'100%'
     },
     footer: {
         backgroundColor: '#45CB85',
