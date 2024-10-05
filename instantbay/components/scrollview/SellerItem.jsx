@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#F5F5F7',
       padding: 20,
       borderRadius: 10,
-      width: '70%'
+      width: '100%'
     },
     contentcontainer:{
       backgroundColor:'#F5F5F7',
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
       borderRadius: 5,
       alignContent:'center',
       alignItems: 'center',
-      width: '80%',
+      width: '100%',
     }
 })
 
