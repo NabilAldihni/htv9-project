@@ -2,15 +2,24 @@ import React, { useState } from 'react'
 import { FlatList, View, StyleSheet, Button } from 'react-native'
 import SellerItem from './SellerItem'
 
-const sellerItems = []
+const sellerItems = [
+  {"id":1, "name": "Dell XPS laptop", "price": "12.89"}, 
+  {"id":2,"name": "Cool Bottle", "price": "5.00"}
+]
 const getSellerItems=(itemList)=>{{
-  for(let i=0;i<7;i++){
+  /*
+  for(let i=0;i<3;i++){
     itemList.push({
+
       id: i,
-      name: 'Seller '+(i+1),
-      item: 'Item '+(i+1)
+      item: 'Item '+(i+1),
+
     });
   }
+  */
+
+  return sellerItems
+
 }}
 
 const ItemScrollView = () => {
@@ -45,7 +54,7 @@ const ItemScrollView = () => {
         keyExtractor={(id, index) => id+index}
         renderItem={({ item }) => 
             <View style={styles.itemContainer}>
-                <SellerItem allSelected={allSelected} name={item.name} item={item.item} />
+                <SellerItem allSelected={allSelected} name={item.name} price={item.price} />
             </View>
         }
         horizontal={false}

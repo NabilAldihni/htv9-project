@@ -18,7 +18,7 @@ const SellerItem = (props) => {
       />
       <View style={styles.contentcontainer}>
         <Text>{props.name}</Text>
-        <Text>{props.item}</Text>
+        <Text>{props.price}</Text>
       </View>
     </View>
   )
