@@ -24,6 +24,7 @@ const getSellerItems=(itemList)=>{{
 
 const ItemScrollView = () => {
   const [allSelected, setAllSelected]=useState(false)
+  const [localChecked, setLocalChecked]=useState(false)
   getSellerItems(sellerItems);
   return (
     <View style={styles.container}>
@@ -32,7 +33,7 @@ const ItemScrollView = () => {
         <TouchableOpacity 
           style={styles.selectbutton}
           onPress={() => {
-            setAllSelected(true)
+            setLocalChecked(true)
           }}
         >
           <Text style={styles.buttonText}>Select All</Text>
@@ -41,7 +42,7 @@ const ItemScrollView = () => {
         <TouchableOpacity 
           style={styles.deselectbutton}
           onPress={() => {
-            setAllSelected(false)
+            setLocalChecked(false)
           }}
         >
           <Text style={styles.buttonText}>Deselect All</Text>
@@ -55,7 +56,7 @@ const ItemScrollView = () => {
         keyExtractor={(id, index) => id+index}
         renderItem={({ item }) => 
             <View style={styles.itemContainer}>
-                <SellerItem allSelected={allSelected} name={item.name} price={item.price} />
+                <SellerItem localChecked={localChecked} name={item.name} price={item.price} />
             </View>
         }
         horizontal={false}
