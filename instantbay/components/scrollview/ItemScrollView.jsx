@@ -1,16 +1,25 @@
 import React, { useState } from 'react'
-import { FlatList, View, StyleSheet, Button } from 'react-native'
+import { FlatList, View, StyleSheet, Button, TouchableOpacity, Text } from 'react-native'
 import SellerItem from './SellerItem'
 
-const sellerItems = []
+const sellerItems = [
+  {"id":1, "name": "Dell XPS laptop", "price": "12.89"}, 
+  {"id":2,"name": "Cool Bottle", "price": "5.00"}
+]
 const getSellerItems=(itemList)=>{{
-  for(let i=0;i<7;i++){
+  /*
+  for(let i=0;i<3;i++){
     itemList.push({
+
       id: i,
-      name: 'Seller '+(i+1),
-      item: 'Item '+(i+1)
+      item: 'Item '+(i+1),
+
     });
   }
+  */
+
+  return sellerItems
+
 }}
 
 const ItemScrollView = () => {
@@ -20,22 +29,23 @@ const ItemScrollView = () => {
     <View style={styles.container}>
       {/*header for select/deselect all button*/}
       <View style={styles.header}>
-        <View style={styles.selectbutton}>
-        <Button title='Select All'
-        onPress={()=>{
-          setAllSelected(true)
-          //console.log(allSelected)
-        }}/>
-        </View>
+        <TouchableOpacity 
+          style={styles.selectbutton}
+          onPress={() => {
+            setAllSelected(true)
+          }}
+        >
+          <Text style={styles.buttonText}>Select All</Text>
+        </TouchableOpacity>
 
-        <View style={styles.deselectbutton}>
-        <Button title='Deselect All'
-        onPress={()=>{
-          setAllSelected(false)
-          //console.log(allSelected)
-        }}
-        />
-        </View>
+        <TouchableOpacity 
+          style={styles.deselectbutton}
+          onPress={() => {
+            setAllSelected(false)
+          }}
+        >
+          <Text style={styles.buttonText}>Deselect All</Text>
+        </TouchableOpacity>
         
       </View>
       {/*ScrollView - (switched to flatlist component but essentially the same thing in our use case)*/}
@@ -45,14 +55,16 @@ const ItemScrollView = () => {
         keyExtractor={(id, index) => id+index}
         renderItem={({ item }) => 
             <View style={styles.itemContainer}>
-                <SellerItem allSelected={allSelected} name={item.name} item={item.item} />
+                <SellerItem allSelected={allSelected} name={item.name} price={item.price} />
             </View>
         }
         horizontal={false}
       />
       {/*footer for sell confirmation button*/}
       <View style={styles.footer}>
-        <View style={styles.button}><Button title='Sell Selected Items'/></View>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Sell Selected Items</Text>
+        </TouchableOpacity>
       </View>      
     </View>
   )
@@ -97,6 +109,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       borderRadius: 10,
+      padding: 10,
     },
     selectbutton:{
       backgroundColor: '#06AED5',
@@ -104,6 +117,8 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       borderRadius: 12,
+      padding: 10,
+      marginRight: 10,
     },
     deselectbutton:{
       backgroundColor: '#DD1C1A',
@@ -111,6 +126,11 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       borderRadius: 12,
+      padding: 10,
+    },
+    buttonText: {
+      color: 'white',
+      fontWeight: 'bold',
     }
 })
 

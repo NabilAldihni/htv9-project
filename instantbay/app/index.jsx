@@ -12,7 +12,7 @@ export default function Page() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F7',
+    backgroundColor: '#fff',
     color: '#1D1D1F',
     right: 'auto',
     left: 'auto',

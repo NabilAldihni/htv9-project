@@ -18,7 +18,7 @@ const SellerItem = (props) => {
       />
       <View style={styles.contentcontainer}>
         <Text>{props.name}</Text>
-        <Text>{props.item}</Text>
+        <Text>{props.price}</Text>
       </View>
     </View>
   )
@@ -27,7 +27,7 @@ const SellerItem = (props) => {
 const styles = StyleSheet.create({
     container: {
       flexDirection:'row',
-      backgroundColor: 'grey',
+      backgroundColor: '#F5F5F7',
       padding: 20,
       borderRadius: 10,
       width: '70%'
