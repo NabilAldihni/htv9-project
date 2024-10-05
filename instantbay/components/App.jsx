@@ -1,13 +1,12 @@
 import React from 'react'
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
+import ItemScrollView from './scrollview/ItemScrollView';
 
 const App = () => {
   return (
     <View>
-        <Text>Hello World</Text>
-        <Button title="Click me" onPress={() => alert('')} />
+          <ItemScrollView />
     </View>
   )
 }
-
 export default App

@@ -1,32 +1,21 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
 import App from "../components/App";
 
 export default function Page() {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <App />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#F5F5F7',
+    color: '#1D1D1F',
     alignItems: "center",
-    padding: 24,
-  },
-  main: {
-    flex: 1,
-    justifyContent: "center",
-    maxWidth: 960,
-    marginHorizontal: "auto",
-  },
-  title: {
-    fontSize: 64,
-    fontWeight: "bold",
-  },
-  subtitle: {
-    fontSize: 36,
-    color: "#38434D",
-  },
+    width: '100%',
+    height: '100%',
+  }
 });
