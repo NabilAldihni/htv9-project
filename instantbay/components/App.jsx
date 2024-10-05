@@ -1,11 +1,12 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native';
 import ItemScrollView from './scrollview/ItemScrollView';
+import CameraView from './cameraview/CameraView';
 
 const App = () => {
   return (
     <View style={styles.container}>
-          <ItemScrollView />
+          <CameraView />
     </View>
   )
 }
