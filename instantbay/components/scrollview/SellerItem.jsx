@@ -16,7 +16,7 @@ const SellerItem = (props) => {
                   setLocalChecked(!localChecked)
                 }}
       />
-      <View sty>
+      <View style={styles.contentcontainer}>
         <Text>{props.name}</Text>
         <Text>{props.item}</Text>
       </View>
@@ -27,16 +27,16 @@ const SellerItem = (props) => {
 const styles = StyleSheet.create({
     container: {
       flexDirection:'row',
-      flex: 1,
-      backgroundColor: '#FF0022',
-      justifyContent: 'center',
-      alignItems: 'center',
+      backgroundColor: 'grey',
+      padding: 20,
       borderRadius: 10
     },
     contentcontainer:{
-      justifyContent: 'center',
-      alignItems: 'center',
-      alignContent: 'center'
+      backgroundColor:'#F5F5F7',
+      padding: 15,
+      borderRadius: 5,
+      alignContent:'center',
+      alignItems: 'center'
     }
 })
 
