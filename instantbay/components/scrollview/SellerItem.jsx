@@ -3,17 +3,18 @@ import { View, Text, StyleSheet } from 'react-native'
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 const SellerItem = (props) => {
-  const [localChecked, setLocalChecked]=useState(false)
+  const [checked, setChecked]=useState(props.localChecked)
+  
   return (
     <View style={styles.container}>
       <BouncyCheckbox
                 fillColor='#45CB85'
                 unFillColor='#F5F5F7'
-                isChecked={props.allSelected ? props.allSelected : localChecked}
+                isChecked={checked}
                 useBuiltInState={false}
                 onPress={()=>{
                   //invert localChecked state
-                  setLocalChecked(!localChecked)
+                  setChecked(!checked)
                 }}
       />
       <View style={styles.contentcontainer}>
