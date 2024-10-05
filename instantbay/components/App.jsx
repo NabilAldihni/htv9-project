@@ -1,11 +1,12 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Button } from 'react-native';
 
 const App = () => {
   return (
-    <view>
-        <text>Hello World</text>
-    </view>
+    <View>
+        <Text>Hello World</Text>
+        <Button title="Click me" onPress={() => alert('')} />
+    </View>
   )
 }
 
