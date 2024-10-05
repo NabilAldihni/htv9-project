@@ -2,25 +2,19 @@ import React from 'react'
 import { FlatList, View, StyleSheet } from 'react-native'
 import SellerItem from './SellerItem'
 
-const sellerItems = [
-    {
-        id: 1,
-        name: 'Seller 1',
-        item: 'Talking Elmo'
-    },
-    {
-        id: 2,
-        name: 'Seller 2',
-        item: 'Screaming Cookie Monster'
-    },
-    {
-        id: 3,
-        name: 'Seller 3',
-        item: 'Talking Tigger'
-    },
-]
+const sellerItems = []
+const getSellerItems=()=>{{
+  for(let i=0;i<10;i++){
+    sellerItems.push({
+      id: i,
+      name: 'Seller '+(i+1),
+      item: 'Item '+(i+1)
+    });
+  }
+}}
 
 const ItemScrollView = () => {
+  getSellerItems();
   return (
     <FlatList
         style={styles.container}
