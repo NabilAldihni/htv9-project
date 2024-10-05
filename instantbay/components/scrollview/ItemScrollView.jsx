@@ -30,7 +30,9 @@ const ItemScrollView = () => {
       {/*header for select/deselect all button*/}
       <View style={styles.header}>
         <View style={styles.selectbutton}>
-        <Button title='Select All'
+        <Button 
+        color='white'
+        title='Select All'
         onPress={()=>{
           setAllSelected(true)
           //console.log(allSelected)
@@ -38,7 +40,9 @@ const ItemScrollView = () => {
         </View>
 
         <View style={styles.deselectbutton}>
-        <Button title='Deselect All'
+        <Button 
+        color='white'
+        title='Deselect All'
         onPress={()=>{
           setAllSelected(false)
           //console.log(allSelected)
@@ -61,7 +65,9 @@ const ItemScrollView = () => {
       />
       {/*footer for sell confirmation button*/}
       <View style={styles.footer}>
-        <View style={styles.button}><Button title='Sell Selected Items'/></View>
+        <View style={styles.button}>
+          <Button color='white' title='Sell Selected Items'/>
+        </View>
       </View>      
     </View>
   )
