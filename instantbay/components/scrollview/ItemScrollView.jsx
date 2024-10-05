@@ -20,21 +20,23 @@ const ItemScrollView = () => {
     <View style={styles.container}>
       {/*header for select/deselect all button*/}
       <View style={styles.header}>
+        <View style={styles.selectbutton}>
         <Button title='Select All'
         onPress={()=>{
-          if(allSelected===false){
-            setAllSelected(true)
-          }
+          setAllSelected(true)
           //console.log(allSelected)
         }}/>
+        </View>
+
+        <View style={styles.deselectbutton}>
         <Button title='Deselect All'
         onPress={()=>{
-          if(allSelected===true){
-            setAllSelected(false)
-          }
+          setAllSelected(false)
           //console.log(allSelected)
         }}
         />
+        </View>
+        
       </View>
       {/*ScrollView - (switched to flatlist component but essentially the same thing in our use case)*/}
       <FlatList
@@ -49,7 +51,9 @@ const ItemScrollView = () => {
         horizontal={false}
       />
       {/*footer for sell confirmation button*/}
-      <View style={styles.footer}><Button title='Sell Selected Items'/></View>      
+      <View style={styles.footer}>
+        <View style={styles.button}><Button title='Sell Selected Items'/></View>
+      </View>      
     </View>
   )
 }
@@ -63,12 +67,12 @@ const styles = StyleSheet.create({
       alignItems:'center',
     },
     header:{
-      backgroundColor: 'orange',
       flexDirection: 'row',
-      borderRadius: 10,
       alignContent:'center',
       alignItems: 'center',
-      justifyContent:'center'
+      justifyContent:'center',
+      padding:10,
+      width: '100%'
     },
     list: {
       width:'100%'
@@ -77,16 +81,36 @@ const styles = StyleSheet.create({
       padding: 10,
       flexDirection: 'row-reverse',
       justifyContent:'space-evenly',
-      paddingVertical: 15,
+      paddingVertical: 10,
       width:'100%'
     },
     footer: {
-        backgroundColor: '#45CB85',
         alignContent:'center',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 10,
-        maxWidth:'50%'
+        width:'100%',
+        padding:15
+    },
+    button:{
+      backgroundColor: '#45CB85',
+      alignContent:'center',
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 10,
+    },
+    selectbutton:{
+      backgroundColor: '#06AED5',
+      alignContent:'center',
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 12,
+    },
+    deselectbutton:{
+      backgroundColor: '#DD1C1A',
+      alignContent:'center',
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 12,
     }
 })
 

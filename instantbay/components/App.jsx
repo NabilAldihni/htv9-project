@@ -5,7 +5,7 @@ import ItemScrollView from './scrollview/ItemScrollView';
 const App = () => {
   return (
     <View style={styles.container}>
-          <ItemScrollView />
+      <ItemScrollView />
     </View>
   )
 }
