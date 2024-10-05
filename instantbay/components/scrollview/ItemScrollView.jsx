@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { FlatList, View, StyleSheet, TouchableOpacity, Text } from 'react-native'
 import SellerItem from './SellerItem'
-import { useFonts } from 'expo-font';
 
 // ... existing code for sellerItems and getSellerItems ...
 const sellerItems = [
