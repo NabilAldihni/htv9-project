@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FlatList, View, StyleSheet, Button } from 'react-native'
+import { FlatList, View, StyleSheet, Button, TouchableOpacity, Text } from 'react-native'
 import SellerItem from './SellerItem'
 
 const sellerItems = [
@@ -29,26 +29,23 @@ const ItemScrollView = () => {
     <View style={styles.container}>
       {/*header for select/deselect all button*/}
       <View style={styles.header}>
-        <View style={styles.selectbutton}>
-          <Button 
-          color='white'
-          title='Select All'
-          onPress={()=>{
+        <TouchableOpacity 
+          style={styles.selectbutton}
+          onPress={() => {
             setAllSelected(true)
-            //console.log(allSelected)
-          }}/>
-        </View>
-
-        <View style={styles.deselectbutton}>
-          <Button 
-          color='white'
-          title='Deselect All'
-          onPress={()=>{
-            setAllSelected(false)
-            //console.log(allSelected)
           }}
-          />
-        </View>
+        >
+          <Text style={styles.buttonText}>Select All</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={styles.deselectbutton}
+          onPress={() => {
+            setAllSelected(false)
+          }}
+        >
+          <Text style={styles.buttonText}>Deselect All</Text>
+        </TouchableOpacity>
         
       </View>
       {/*ScrollView - (switched to flatlist component but essentially the same thing in our use case)*/}
@@ -65,9 +62,9 @@ const ItemScrollView = () => {
       />
       {/*footer for sell confirmation button*/}
       <View style={styles.footer}>
-        <View style={styles.button}>
-          <Button color='white' title='Sell Selected Items'/>
-        </View>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Sell Selected Items</Text>
+        </TouchableOpacity>
       </View>      
     </View>
   )
@@ -112,6 +109,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       borderRadius: 10,
+      padding: 10,
     },
     selectbutton:{
       backgroundColor: '#06AED5',
@@ -119,6 +117,8 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       borderRadius: 12,
+      padding: 10,
+      marginRight: 10,
     },
     deselectbutton:{
       backgroundColor: '#DD1C1A',
@@ -126,6 +126,11 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       borderRadius: 12,
+      padding: 10,
+    },
+    buttonText: {
+      color: 'white',
+      fontWeight: 'bold',
     }
 })
 
