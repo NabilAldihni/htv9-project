@@ -24,6 +24,9 @@ const ItemScrollView = () => {
 
         const data = await response.json();
         
+        if (data.itemSummaries === undefined) {
+          throw new Error(`No data was returned`);
+        }
         // Parse the results into the format we need
         const parsedItems = data.itemSummaries.map(item => ({
           id: item.itemId,
