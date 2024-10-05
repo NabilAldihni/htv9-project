@@ -1,11 +1,11 @@
-import { StyleSheet, SafeAreaView } from "react-native";
+import { StyleSheet, View } from "react-native";
 import App from "../components/App";
 
 export default function Page() {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <App />
-    </SafeAreaView>
+    </View>
   );
 }
 

@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
       height: '100%',
       justifyContent:'center',
       alignContent:'center',
-      alignItems:'center'
+      alignItems:'center',
     },
     header:{
       backgroundColor: 'orange',
@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
       justifyContent:'center'
     },
     list: {
+      width:'100%'
     },
     itemContainer: {
       padding: 10,
