@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { TouchableOpacity } from 'react-native';
+import Video from "react-native-video";
 
 
 const LoginView = ({ navigation }) => {
@@ -9,6 +10,15 @@ const LoginView = ({ navigation }) => {
 
   return (
     <View style={{flex: 1}}>
+      <Video
+          source={require("../../assets/loginbackground.mp4")}
+          style={styles.backgroundVideo}
+          muted={true}
+          repeat={true}
+          resizeMode={"cover"}
+          rate={1.0}
+          ignoreSilentSwitch={"obey"}
+        />
       <View style={styles.upperContainer}>
         <Text style={styles.title}>Welcome to InstantBay!</Text>
         <TouchableOpacity
@@ -113,6 +123,15 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection:'row'
   },
+  backgroundVideo: {
+    height: '100%',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    alignItems: "stretch",
+    bottom: 0,
+    right: 0
+  }
 });
 
 export default LoginView;
