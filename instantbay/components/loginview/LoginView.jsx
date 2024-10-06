@@ -19,7 +19,7 @@ const LoginView = ({ navigation }) => {
         />
         <View style={{width: '100%', height: '100%', backgroundColor:'rgba(0,0,0,0.4)', position: 'absolute'}}></View>
       <View style={styles.upperContainer}>
-        <Text style={styles.title}>Welcome to InstantBay!</Text>
+        <Text style={styles.title}>Welcome to QuickBay!</Text>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('Camera')}

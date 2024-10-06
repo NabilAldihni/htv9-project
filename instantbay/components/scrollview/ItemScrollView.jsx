@@ -237,6 +237,7 @@ const ItemScrollView = () => {
           onPress={() => {
             setSelectedAll(true)
             setDeselectedAll(false)
+            setResultList(editedItems)
           }}
         >
           <Text style={styles.buttonText}>Select All</Text>
@@ -247,6 +248,7 @@ const ItemScrollView = () => {
           onPress={() => {
             setDeselectedAll(true)
             setSelectedAll(false)
+            setResultList([])
           }}
         >
           <Text style={styles.buttonText}>Deselect All</Text>
