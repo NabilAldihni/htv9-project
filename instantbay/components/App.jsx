@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { StyleSheet } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -12,6 +13,7 @@ const ScreenStack = createNativeStackNavigator();
 const App = () => {
   return (
     <NavigationContainer independent={true}>
+
       <ScreenStack.Navigator>
         <ScreenStack.Screen name="Login" component={LoginView} options={{headerShown: false}} />
         <ScreenStack.Screen name="Camera" component={CameraView} options={{headerShown: false}} />

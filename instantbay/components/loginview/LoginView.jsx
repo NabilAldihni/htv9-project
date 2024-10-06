@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 
@@ -32,9 +33,29 @@ const LoginView = ({navigation}) => {
         }}
       >
       <Text style={{ color: '#fff', fontSize: '16px' }}>Go to Items</Text>
+
       </TouchableOpacity>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    padding: 10,
+    backgroundColor: '#007BFF',
+    borderRadius: 5,
+    elevation: 3,
+  },
+  buttonText: {
+    fontSize: 16,
+    color: '#fff',
+    textAlign: 'center',
+  },
+});
 
 export default LoginView;
