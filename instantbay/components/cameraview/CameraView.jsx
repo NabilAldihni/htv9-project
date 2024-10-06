@@ -140,7 +140,7 @@ const CameraView = ({ navigation }) => {
 			{isStreaming ? 'Stop Streaming' : 'Start Streaming'}
 		  </Text>
 		</TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Scroll')}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Scroll', { detectedObjects: ["Poster"] })}>
           <Text style={styles.buttonText}>Done recording</Text>
        </TouchableOpacity>
 	  </View>

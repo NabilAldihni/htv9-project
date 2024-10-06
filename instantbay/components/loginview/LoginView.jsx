@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import Video from 'react-native-video';
 
@@ -19,43 +18,18 @@ const LoginView = ({ navigation }) => {
         />
         <View style={{width: '100%', height: '100%', backgroundColor:'rgba(0,0,0,0.4)', position: 'absolute'}}></View>
       <View style={styles.upperContainer}>
-        <Text style={styles.title}>Welcome to InstantBay!</Text>
+        <Text style={styles.title}>Welcome to QuickBay!</Text>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Camera')}
+          onPress={() => navigation.navigate('InputItems')}
         >
           <Text style={styles.buttonText}>Start Scanning</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.lowerContainer}>
-
-        <View style={{padding:7, width: '60%', shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,}}>
-          <View style={styles.textinput}>
-            <TextInput style={{width:'100%'}} placeholder='Username'/>
-          </View>
-        </View>
-        <View style={{padding:7, width: '60%', shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,}}>
-        <View style={styles.textinput}>
-          <TextInput style={{width:'100%'}} placeholder='Password'/>
-        </View>
-        </View>
-        <View style={{padding:7}}>
-          <TouchableOpacity style={styles.loginbutton} onPress={()=>navigation.navigate("Scroll")}>
-            <Text style={styles.loginbuttonText}>Log In</Text>
-          </TouchableOpacity>
-        </View>
+        <Text style={{color: '#1D1D1F', fontWeight: '600', alignContent: 'center', alignItems:'center', textAlign:'center', padding: 15, fontSize: 16, width: '85%' }}>
+        QuickBay is an innovative mobile application designed to promote sustainability and supporting the circular economy. By allowing users to easily scan items, QuickBay helps individuals identify potential products they can sell on eBay, reducing waste and encouraging a culture of reusability.
+        </Text>
       </View>
     </View>
   );
@@ -68,7 +42,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   lowerContainer:{
-    backgroundColor: '#666B6A',
+    backgroundColor: '#DAD7CD',
     borderTopRightRadius: 40,
     borderTopLeftRadius: 40,
     flex: 2,
@@ -77,9 +51,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    padding: 10,
-    backgroundColor: '#72A276',
-    borderRadius: 5,
+    padding: 14,
+    backgroundColor: '#3A5A40',
+    borderRadius: 10,
     elevation: 3,
   },
   loginbutton: {

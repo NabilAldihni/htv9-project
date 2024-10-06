@@ -16,6 +16,9 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@react-navigation/native": "^6.0.2",
     "@types/react-native": "^0.73.0",
     "expo": "^51.0.36",
@@ -33,6 +36,7 @@
     "react-dom": "18.2.0",
     "react-native": "0.74.5",
     "react-native-bouncy-checkbox": "^4.1.2",
+    "react-native-dotenv": "^3.4.11",
     "react-native-fs": "^2.20.0",
     "react-native-gesture-handler": "~2.16.1",
     "react-native-reanimated": "~3.10.1",
@@ -41,7 +45,8 @@
     "react-native-video": "^6.6.4",
     "react-native-vision-camera": "^4.5.3",
     "react-native-web": "~0.19.10",
-    "react-use-websocket": "^4.9.0"
+    "react-use-websocket": "^4.9.0",
+    "react-use-websockets": "^3.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

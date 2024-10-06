@@ -10,6 +10,7 @@ npm-debug.*
 *.orig.*
 web-build/
 tsconfig.json
+.env
 
 # macOS
 .DS_Store
@@ -55,3 +56,5 @@ yarn-error.*
 
 expo-env.d.ts
 # @end expo-cli
+
+.env
