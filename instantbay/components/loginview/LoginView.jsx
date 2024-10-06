@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import Video from 'react-native-video';
 
@@ -28,34 +27,9 @@ const LoginView = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <View style={styles.lowerContainer}>
+        <Text>
 
-        <View style={{padding:7, width: '60%', shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,}}>
-          <View style={styles.textinput}>
-            <TextInput style={{width:'100%'}} placeholder='Username'/>
-          </View>
-        </View>
-        <View style={{padding:7, width: '60%', shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,}}>
-        <View style={styles.textinput}>
-          <TextInput style={{width:'100%'}} placeholder='Password'/>
-        </View>
-        </View>
-        <View style={{padding:7}}>
-          <TouchableOpacity style={styles.loginbutton} onPress={()=>navigation.navigate("Scroll")}>
-            <Text style={styles.loginbuttonText}>Log In</Text>
-          </TouchableOpacity>
-        </View>
+        </Text>
       </View>
     </View>
   );
