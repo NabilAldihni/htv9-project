@@ -11,9 +11,9 @@ const ItemScrollView = () => {
   const [isSellingItems, setIsSellingItems] = useState(false)
 
   const detectedObjects = ["Air Jordans red", "Dell optiplex 7060"];
-  const EBAY_API_TOKEN = `v^1.1#i^1#f^0#p^3#r^0#I^3#t^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`;
-  const EBAY_API_URL = "https://api.sandbox.ebay.com";
-  const [resultList, setResultList]=useState([])
+  const EBAY_API_TOKEN = `v^1.1#i^1#p^3#f^0#r^0#I^3#t^H4sIAAAAAAAAAOVZbYwbRxk+36ei3LWpqFp0qirjEhCt1p5d79reVWxpc/blfL07O7bz0ZNSM7sze57zetfZnfXFDSRHQAEh1KBUVAL+BKqqiUhVCSpIvxHkQ/woaikRpIUCP5BKUEsaCFCKBLv23cU5SpKzD9US/mPt7Pv1PPO+7+zMgMXBDfcenjj8txHfUO+xRbDY6/OxG8GGwYH7bunrHR3oAS0CvmOLH1/sP9T31hYbVvSqlMN21TRs7N9X0Q1bagzGA45lSCa0iS0ZsIJtiapSXp6ekrggkKqWSU3V1AP+dDIewAKCMR6LHI7wKoxAd9RYtlkw4wEFh8M8jmg4yrFQUET3vW07OG3YFBo0HuAAxzMsYECkAERJECSWD0YFdjbg34ktm5iGKxIEgUQjXKmha7XEev1QoW1ji7pGAom0PJ7PyOlkaqawJdRiK7HEQ55C6tjXPo2ZCPt3Qt3B13djN6SlvKOq2LYDoUTTw7VGJXk5mDbCb1DNa8jlGoe5CIZIYeG6UDluWhVIrx+HN0IQozVEJWxQQus3YtRlQ5nHKl16mnFNpJN+72+7A3WiEWzFA6mt8gM78qlcwJ/PZi2zRhBGHlIuIohcOBqNsYGEAaGOSMkogiUvTVNLHK9yM2YaiHiM2f4Zk27Fbsh4NTF8CzGuUMbIWLJGvXBa5Fh2mUCen/VmtDmFDi0Z3qTiisuCv/F4Y/qX8+FqBqxXRihKJKoiVoRQREqYD39QRni1vtasSHgTI2ezIS8WrMA6U4FWGdOqDlXMqC69TgVbBElhQePCMQ0zKCJqDC9qGqMIKMKwGsYAY0VRxdj/TXJQahHFoXglQVa/aCCMB/KqWcVZUydqPbBapNFtltJhnx0PlCitSqHQwsJCcCEcNK25EAcAG9o9PZVXS7ji9oBlWXJjYYY0EkPFrpZNJFqvutHsc/POdW7MBRJhC2WhRet5rOvuwHLWXhNbYvXofwE5phOXgYLrorswTpg2xagjaAjXiIqLBHUXMo7jvFrn+LAY5gUAuI5A6uYcMaYxLZldBtNrCelkR9jcDgppd6Fq7ULcchdiWQZEJQA6AitXq+lKxaFQ0XG6y+ZSAALPdgav6jjdVohkHlvz8/MG1csdQfMWXolATaJmGRurW6lX6x8+1lxqPJfKTxQLmftTMx2hzWHNwnap4GHttjyVt8uTsvub3jZpcmC6UKkZY5MPpUt1dt+CzBqqMe5MlQkSxalwoVZKVbjqwn1oYsqZmEoLkeSOaIadTu7duUtOLsTjHZGUx6qFu6x1VXLZcoZT8BSSd08+sI2vYk4h5b2ck2UXIplIMprJw2ljctcMTHUGfnqu2yrdXXLXabktfFCJr5jxav1DA2k1C7PY6EJF96kjoKm5ruvXETassTwQWJEDMMrFosjbY4thzf2xPBY7Xn67DO8MVIgu64hZ2icqTDaXZKK8FkOCpkEmHFFUhec7XZe7bZrXa1m2ve3b/w6aV+vtwPNs2K4RWCVB78shqJqVkAkdWvKGio2o/TcjFLLd7V+wueF3LQctDJFp6PV2lNegQ4yau2E0rXo7DleU16ADVdV0DNqOuyXVNWhojq4RXfdOBdpx2KK+ljANqNcpUe22XBLDyzZ7DSpVWG8ARMSuevVyU5ruWAVbKg4S1DxZbCdYC7sOYeMorR2lNbpcCdkwKdGI2rRhO4qtWqR681GoXq3f0FY7fNhuLaxp6poKK646215jRCys0qJjke5aAhorX1FuHBmS4jZm1UrIVKxa7aG9TmfwPXq78eAkK+fzuzK5zo5OkrjWbZ8zWMN8jOcijIZVnuEBQkxMjWKGFwHkIGIjCHX2bb4+h0X9nzu1jqBZ9zuVAzGBDd8stFUDLYfU/3E5Ebr2ajDR0/ixh3w/Aod8L/b6fGAL2MzeAz422Lejv2941CbUbd9QC9pkzoDUsXCwjOtVSKzej/Rc/vbXJsZGU5lH791fqL/yzXM9wy03k8f2gI+u3E1u6GM3tlxUgruuvhlgb71zhONZACJAFASWnwX3XH3bz97Rf/vRDWe/9yv17TPva5tOHDz/6oHZFx5nwMiKkM830NN/yNfDzJ167Ct/HPrimw8+H930pTNvlC5+IXryqwd3v6S/+4enThXu1hen/vXn05m3Djy/fSv6U/Lsyb+cmENvHikf/PlA9ht/Pf3w8eeUi5eF2mH57qdHRo9uHjz7i6cPD58szfzyBL7lwb/v+fLF7154xPf7n6XOC8rwpX8sPvOy+vj+xBD65EjPp9978nfnzhw46JR/+p3Xf1x57MW3k3f8hFzZM3vh1GvPjh459tTxo85rSN7/dXrl3PGJz3zi0vff+PzOJ/nx32Y2KiduvV2YvZR77/zwo6dFtjbxRPzCmeiv+U3bhoXPvvrPl5+5PPSEn37qW5sH77/tzvRF+Urwrh+Uymcf3jLybjb1zjsO/8OTvzkydNv7r7/CNufy3xr85uAzHgAA`;
+  const EBAY_API_URL = "https://api.ebay.com";
+  let resultList = [];
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -99,7 +99,7 @@ const ItemScrollView = () => {
       // Perform operations for each selected item
       for (const item of resultList) {
         // Example API call to create a listing
-        const response = await fetch(`${EBAY_API_URL}/sell/inventory/v1/inventory_item/${item.id}`, {
+        const inventoryResponse = await fetch(`${EBAY_API_URL}/sell/inventory/v1/inventory_item/${item.id}`, {
           method: 'PUT',
           headers: {
             'Authorization': `Bearer ${EBAY_API_TOKEN}`,
@@ -110,8 +110,9 @@ const ItemScrollView = () => {
             product: {
               title: item.name,
               aspects: {
-                Color: "black"
+                Color: ["black"]
               },
+              upc: [ "888462079525" ],
               description: "This item is actually really cool!",
               imageUrls: ["https://m.media-amazon.com/images/I/61JpqnUgmSL.jpg"]
             },
@@ -137,19 +138,74 @@ const ItemScrollView = () => {
           })
         });
 
-        if (!response.ok) {
-          throw new Error(`Failed to create inventory item for item ${item.id}, error: ${response.json()}`);
+        if (!inventoryResponse.ok) {
+          throw new Error(`Failed to create inventory item for item ${item.id}, error: ${await inventoryResponse.text()}`);
         }
 
-        // You can add more operations here, such as updating local state
         console.log(`Successfully created an inventory item for item ${item.id}`);
+
+        // Create offer
+        const offerResponse = await fetch(`${EBAY_API_URL}/sell/inventory/v1/offer`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${EBAY_API_TOKEN}`,
+            'Content-Type': 'application/json',
+            'Content-Language': 'en-US'
+          },
+          body: JSON.stringify({
+            sku: item.id,
+            marketplaceId: "EBAY_US",
+            merchantLocationKey: "mainlocation",
+            format: "FIXED_PRICE",
+            availableQuantity: 1,
+            categoryId: "260741",
+            listingDescription: "This is a great item!",
+            listingDuration: "GTC",
+            listingPolicies: {
+              fulfillmentPolicyId: "303908807021",
+              paymentPolicyId: "303909126021",
+              returnPolicyId: "303909144021"
+            },
+            pricingSummary: {
+              price: {
+                currency: "USD",
+                value: item.price
+              }
+            }
+          })
+        });
+
+        if (!offerResponse.ok) {
+          throw new Error(`Failed to create offer for item ${item.id}, error: ${await offerResponse.text()}`);
+        }
+
+        const offerData = await offerResponse.json();
+        const offerId = offerData.offerId;
+
+        console.log(`Successfully created an offer for item ${item.id}, offer ID: ${offerId}`);
+
+        // Publish offer
+        const publishResponse = await fetch(`${EBAY_API_URL}/sell/inventory/v1/offer/${offerId}/publish`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${EBAY_API_TOKEN}`,
+            'Content-Type': 'application/json',
+            'Content-Language': 'en-US'
+          }
+        });
+
+        if (!publishResponse.ok) {
+          throw new Error(`Failed to publish offer ${offerId} for item ${item.id}, error: ${await publishResponse.text()}`);
+        }
+
+        console.log(`Successfully published offer ${offerId} for item ${item.id}`);
       }
 
       // After all operations are complete, you might want to refresh the item list or show a success message
-      alert('Successfully created inventory items for all selected items!');
+      alert('Successfully created, offered, and published all selected items!');
     } catch (error) {
-      console.error('Error creating inventory items:', error);
-      alert('An error occurred while creating the inventory items. Please try again.');
+      console.error('Error in selling process:', error);
+      alert('An error occurred while processing the items. Please try again.');
     } finally {
       setIsSellingItems(false);
     }
