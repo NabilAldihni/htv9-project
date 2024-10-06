@@ -1,12 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { TouchableOpacity } from 'react-native';
-import BackgroundVideo from './BackgroundVideo';
-import { TouchableOpacity, Text, View, StyleSheet } from 'react-native';
+
 
 const LoginView = ({ navigation }) => {
+
+  const background = require('../../assets/loginbackground.mp4');
+
+  const [username_password, setUsername_password]=useState(['placeholderUsername', 'placeholderPassword'])
+
   return (
     <View style={{flex: 1}}>
-      <BackgroundVideo />
       <View style={styles.upperContainer}>
         <Text style={styles.title}>Welcome to InstantBay!</Text>
         <TouchableOpacity
@@ -36,9 +40,9 @@ const LoginView = ({ navigation }) => {
     },
     shadowOpacity: 0.1,
     shadowRadius: 3.84,}}>
-          <View style={styles.textinput}>
-            <TextInput placeholder='Password'/>
-          </View>
+        <View style={styles.textinput}>
+          <TextInput placeholder='Password'/>
+        </View>
         </View>
         <View style={{padding:7}}>
           <TouchableOpacity style={styles.loginbutton}>
@@ -110,15 +114,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: '100%',
     flexDirection:'row'
-  },
-  backgroundVideo: {
-    height: '100%',
-    position: "absolute",
-    top: 0,
-    left: 0,
-    alignItems: "stretch",
-    bottom: 0,
-    right: 0
   }
 });
 
