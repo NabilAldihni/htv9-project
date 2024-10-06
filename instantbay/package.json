@@ -45,7 +45,8 @@
     "react-native-video": "^6.6.4",
     "react-native-vision-camera": "^4.5.3",
     "react-native-web": "~0.19.10",
-    "react-use-websocket": "^4.9.0"
+    "react-use-websocket": "^4.9.0",
+    "react-use-websockets": "^3.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
