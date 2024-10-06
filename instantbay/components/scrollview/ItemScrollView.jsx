@@ -259,30 +259,6 @@ const ItemScrollView = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity 
-          style={[styles.headerButton, styles.selectButton]}
-          onPress={() => {
-            setSelectedAll(true)
-            setDeselectedAll(false)
-            setResultList(editingItems)
-          }}
-        >
-          <Text style={styles.buttonText}>Select All</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity 
-          style={[styles.headerButton, styles.deselectButton]}
-          onPress={() => {
-            setDeselectedAll(true)
-            setSelectedAll(false)
-            setResultList([])
-          }}
-        >
-          <Text style={styles.buttonText}>Deselect All</Text>
-        </TouchableOpacity>
-      </View>
-      
       <FlatList
         style={styles.list}
         data={sellerItems}
