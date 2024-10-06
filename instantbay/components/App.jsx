@@ -1,21 +1,24 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import ItemScrollView from './scrollview/ItemScrollView';
-import LoginView from './loginview/LoginView';
-import CameraView from './cameraview/CameraView';
 
-const Stack = createNativeStackNavigator();
+import { StyleSheet } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import ItemScrollView from './scrollview/ItemScrollView';
+import CameraView from './cameraview/CameraView';
+import LoginView from './loginview/LoginView';
+
+
+const ScreenStack = createNativeStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer independent={true}>
-      <Stack.Navigator>
-       <Stack.Screen name="LoginView" component={LoginView} />
-       <Stack.Screen name="CameraView" component={CameraView} />
-       <Stack.Screen name="ItemScrollView" component={ItemScrollView} />
-      </Stack.Navigator>
+
+      <ScreenStack.Navigator>
+        <ScreenStack.Screen name="Login" component={LoginView} options={{headerShown: false}} />
+        <ScreenStack.Screen name="Camera" component={CameraView} options={{headerShown: false}} />
+        <ScreenStack.Screen name="Scroll" component={ItemScrollView} options={{headerShown: false}} />
+      </ScreenStack.Navigator>
     </NavigationContainer>
   )
 }
@@ -23,9 +26,6 @@ const App = () => {
 const styles=StyleSheet.create({
   container:{
     flex: 1,
-    width:'100%',
-    height: '100%',
-    backgroundColor: '#blue',
   }
 })
 

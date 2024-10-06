@@ -11,15 +11,6 @@ export default function Page() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    color: '#1D1D1F',
-    right: 'auto',
-    left: 'auto',
-    alignContent: 'center',
-    alignItems: "center",
-    justifyContent: 'center',
-    width: '100%',
-    height: '100%',
+    flex: 1
   }
 });
