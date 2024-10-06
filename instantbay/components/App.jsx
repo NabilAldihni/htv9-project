@@ -12,8 +12,8 @@ const App = () => {
   return (
     <NavigationContainer independent={true}>
       <ScreenStack.Navigator>
-        <ScreenStack.Screen name="Login" component={LoginView} options={{headerShown: false}} />
         <ScreenStack.Screen name="Scroll" component={ItemScrollView} options={{headerShown: false}} />
+        <ScreenStack.Screen name="Login" component={LoginView} options={{headerShown: false}} />
         <ScreenStack.Screen name="Camera" component={CameraView} options={{headerShown: false}} />
       </ScreenStack.Navigator>
     </NavigationContainer>
