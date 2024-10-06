@@ -13,9 +13,22 @@ const SellerItem = (props) => {
     }
   }, [props.forceSelect, props.forceDeselect])
 
+
   const handleCheckboxPress = () => {
     const newCheckedState = !checked
     setChecked(newCheckedState)
+    
+    if (newCheckedState) {
+      // Add item to the list when checked
+      props.list.push(props.item)
+    } else {
+      // Remove item from the list when unchecked
+      const index = props.list.findIndex(item => item.id === props.item.id)
+      if (index !== -1) {
+        props.list.splice(index, 1)
+      }
+    }
+
     if (props.onSelectionChange) {
       props.onSelectionChange(props.id, newCheckedState)
     }
@@ -30,8 +43,8 @@ const SellerItem = (props) => {
         onPress={handleCheckboxPress}
       />
       <View style={styles.contentcontainer}>
-        <Text style={{fontWeight:'bold', fontSize: 17, padding:8, color:'#1D1D1F'}}>{props.name}</Text>
-        <Text style={{fontWeight:'bold', fontSize: 17, padding:8, color:'#1D1D1F'}}>{props.price}</Text>
+        <Text style={{fontWeight:'bold', fontSize: 17, padding:8, color:'#1D1D1F'}}>{props.item.name}</Text>
+        <Text style={{fontWeight:'bold', fontSize: 17, padding:8, color:'#1D1D1F'}}>{props.item.price}</Text>
       </View>
     </View>
   )
