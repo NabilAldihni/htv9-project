@@ -6,8 +6,8 @@ import numpy as np
 from ultralytics import YOLO
 import logging
 import io
-from clarifai.client.model import Model
-import base64
+from google.cloud import vision  # Import Google Cloud Vision client library
+import os
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -16,16 +16,9 @@ logger = logging.getLogger(__name__)
 # YOLO Model for Object Detection
 model = YOLO('yolov8n.pt')
 
-# Clarifai Setup
-CLARIFAI_API_KEY = "2c51366aa7784b93b1e8cd532fb33be5"  # Replace with your Personal Access Token (PAT)
-CLARIFAI_MODEL_ID = "general-image-quality"  # Clarifai's pre-trained model for image quality
-
-# Initialize Clarifai Model
-model_url = "https://clarifai.com/clarifai/main/models/general-image-quality"
-quality_model = Model(
-    url=model_url,
-    pat=CLARIFAI_API_KEY,
-)
+# Initialize Google Cloud Vision client
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'sacred-catfish-437810-c3-f656fde7779d.json'
+vision_client = vision.ImageAnnotatorClient()
 
 async def process_frame(frame_data):
     nparr = np.frombuffer(frame_data, np.uint8)
@@ -50,46 +43,47 @@ async def process_frame(frame_data):
 
     logger.info(f"Processed frame, found {len(detections)} detections")
 
-    # Send the frame to Clarifai for image quality analysis
-    quality_score = await evaluate_image_quality(frame)
+    # Send the frame to Google Cloud Vision API for similar image detection
+    similar_images = await find_similar_images(frame)
 
-    return {'detections': detections, 'quality_score': quality_score}
+    return {'detections': detections, 'similar_images': similar_images}
 
-async def evaluate_image_quality(frame):
-    """Use Clarifai API to evaluate image quality of the frame."""
-    # Convert image to base64 for API submission
+async def find_similar_images(frame):
+    """Use Google Cloud Vision API to find similar images to the frame."""
+    # Convert image to bytes for API submission
     _, buffer = cv2.imencode('.jpg', frame)
-    frame_base64 = base64.b64encode(buffer).decode("utf-8")
+    content = buffer.tobytes()
 
-    # Send image to Clarifai's model for quality assessment
     try:
-        prediction_response = quality_model.predict_by_bytes(
-            base64.b64decode(frame_base64),
-            input_type="image"
-        )
+        # Create an image object for the Google Cloud Vision API
+        image = vision.Image(content=content)
 
-        # Extract quality score from response
-        if prediction_response.outputs:
-            regions = prediction_response.outputs[0].data.regions
-            for region in regions:
-                for concept in region.data.concepts:
-                    name = concept.name
-                    value = round(concept.value, 4)
-                    if name == "quality":
-                        logger.info(f"Image quality score: {value}")
-                        return value
+        # Perform web detection (can find similar images on the web)
+        response = vision_client.web_detection(image=image)
+
+        # Check if web entities were found (similar images)
+        similar_images = []
+        if response.web_detection.web_entities:
+            for entity in response.web_detection.web_entities:
+                if entity.score > 0.5:  # Filter out lower confidence results
+                    similar_images.append({
+                        'description': entity.description,
+                        'score': entity.score
+                    })
+            logger.info(f"Found {len(similar_images)} similar images")
         else:
-            logger.error("No output from Clarifai API")
-            return None
+            logger.info("No similar images found")
+
+        return similar_images
+
     except Exception as e:
-        logger.error(f"Clarifai API error: {e}")
-        return None
+        logger.error(f"Google Cloud Vision API error: {e}")
+        return []
 
 async def handle_client(websocket, path):
     try:
         buffer = io.BytesIO()
-        best_quality_score = 0
-        best_frame_data = None
+        best_similar_images = None
 
         async for message in websocket:
             if isinstance(message, bytes):
@@ -98,14 +92,13 @@ async def handle_client(websocket, path):
                     logger.info("Received complete image")
                     frame_data = buffer.getvalue()
 
-                    # Process frame and get quality score
+                    # Process frame and get similar images
                     result = await process_frame(frame_data)
-                    quality_score = result['quality_score']
+                    similar_images = result['similar_images']
 
-                    # Save the frame with the best quality score
-                    if quality_score and quality_score > best_quality_score:
-                        best_quality_score = quality_score
-                        best_frame_data = frame_data
+                    # Keep track of the best similar images
+                    if similar_images and not best_similar_images:
+                        best_similar_images = similar_images
 
                     # Send detections back to client
                     await websocket.send(json.dumps(result['detections']))
