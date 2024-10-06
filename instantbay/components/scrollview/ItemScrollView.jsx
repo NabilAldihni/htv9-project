@@ -2,10 +2,12 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { FlatList, View, StyleSheet, TouchableOpacity, Text, ActivityIndicator, TextInput } from 'react-native'
 import SellerItem from './SellerItem'
 import FinalPage from '../final_page/FinalPage';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const ItemScrollView = () => {
   const navigation = useNavigation();
+  const route = useRoute();
+  const { detectedObjects } = route.params;
   const [selectedAll, setSelectedAll] = useState(false)
   const [deselectedAll, setDeselectedAll] = useState(false)
   const [sellerItems, setSellerItems] = useState([])
@@ -13,7 +15,6 @@ const ItemScrollView = () => {
   const [editedItems, setEditedItems] = useState({})
   const [isSellingItems, setIsSellingItems] = useState(false)
 
-  const detectedObjects = ["Air Jordans red", "Dell optiplex 7060"];
   const EBAY_API_TOKEN = `v^1.1#i^1#f^0#I^3#r^0#p^3#t^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`;
   const EBAY_API_URL = "https://api.ebay.com";
   const [resultList, setResultList] = useState([]);
@@ -72,7 +73,7 @@ const ItemScrollView = () => {
     };
 
     fetchItems();
-  }, []);
+  }, [detectedObjects]);
 
   // New useEffect to update sellerItems after render
   useEffect(() => {
@@ -298,7 +299,6 @@ const ItemScrollView = () => {
       />
       
       <View style={styles.footer}>
-      <FontAwesomeIcon icon="fas fa-shopping-cart" />
         <TouchableOpacity 
           style={styles.sellButton}
           onPress={sellSelectedItems}

@@ -6,6 +6,7 @@ import ItemScrollView from './scrollview/ItemScrollView';
 import CameraView from './cameraview/CameraView';
 import LoginView from './loginview/LoginView';
 import FinalPage from './final_page/FinalPage';
+import TextInputItems from './textinputitems/TextInputItems';
 
 const ScreenStack = createNativeStackNavigator();
 
@@ -15,6 +16,7 @@ const App = () => {
       <ScreenStack.Navigator>
         <ScreenStack.Screen name="Login" component={LoginView} options={{headerShown: false}} />
         <ScreenStack.Screen name="Camera" component={CameraView} options={{headerShown: false}} />
+        <ScreenStack.Screen name="InputItems" component={TextInputItems} options={{headerShown: false}} />
         <ScreenStack.Screen name="Scroll" component={ItemScrollView} options={{headerShown: false}} />
         <ScreenStack.Screen name="FinalPage" component={FinalPage} options={{headerShown: false}} />
       </ScreenStack.Navigator>
