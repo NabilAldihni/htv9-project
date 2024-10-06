@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { TouchableOpacity } from 'react-native';
+import BackgroundVideo from './BackgroundVideo';
 
 const LoginView = ({ navigation }) => {
   return (
     <View style={{flex: 1}}>
+      <BackgroundVideo />
       <View style={styles.upperContainer}>
         <Text style={styles.title}>Welcome to InstantBay!</Text>
         <TouchableOpacity
