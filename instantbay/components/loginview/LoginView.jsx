@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import BackgroundVideo from './BackgroundVideo';
+import { TouchableOpacity, Text, View, StyleSheet } from 'react-native';
 
 const LoginView = ({ navigation }) => {
   return (
