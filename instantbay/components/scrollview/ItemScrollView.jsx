@@ -21,41 +21,50 @@ const ItemScrollView = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await fetch(`${EBAY_API_URL}/buy/browse/v1/item_summary/search?q=mice&limit=3`, {
-          headers: {
-            'Authorization': `Bearer ${EBAY_API_TOKEN}`,
-            'Content-Type': 'application/json',
-            'Content-Language': 'en-US'
+        const aggregatedItems = [];
+
+        for (const detectedObject of detectedObjects) {
+          const response = await fetch(`${EBAY_API_URL}/buy/browse/v1/item_summary/search?q=${encodeURIComponent(detectedObject)}&limit=10`, {
+            headers: {
+              'Authorization': `Bearer ${EBAY_API_TOKEN}`,
+              'Content-Type': 'application/json',
+              'Content-Language': 'en-US'
+            }
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
           }
-        });
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          const data = await response.json();
+          
+          if (data.itemSummaries && data.itemSummaries.length > 0) {
+            const itemResults = data.itemSummaries.map(item => ({
+              name: item.title,
+              price: parseFloat(item.price.value),
+              condition: item.condition
+            }));
+
+            const averagePrice = itemResults.reduce((sum, item) => sum + item.price, 0) / itemResults.length;
+            
+            aggregatedItems.push({
+              id: Math.random().toString(36).substr(2, 9),
+              name: itemResults[0].name,
+              price: averagePrice.toFixed(2),
+              condition: itemResults[0].condition,
+            });
+          } else {
+            console.warn(`No data was returned for "${detectedObject}"`);
+          }
         }
 
-        const data = await response.json();
-        
-        if (data.itemSummaries === undefined) {
-          throw new Error(`No data was returned`);
-        }
-        // Parse the results into the format we need
-        const parsedItems = data.itemSummaries.map(item => ({
-          id: item.itemId,
-          name: item.title,
-          price: item.price.value,
-          condition: item.condition,
-        }));
-
-        setSellerItems(parsedItems);
+        setSellerItems(aggregatedItems);
       } catch (error) {
         console.error("Error fetching data from eBay API:", error);
         // Set some dummy data in case of error
         setSellerItems([
           {"id": "1", "name": "Default item 1", "price": "599.99"},
-          {"id": "3", "name": "Default item 3", "price": "499.99"},
-          {"id": "4", "name": "Default item 4", "price": "499.99"},
-          {"id": "5", "name": "Default item 5", "price": "499.99"},
-          {"id": "6", "name": "Default item 6", "price": "499.99"}
+          {"id": "2", "name": "Default item 2", "price": "499.99"},
         ]);
       } finally {
         setIsLoading(false);
@@ -117,7 +126,7 @@ const ItemScrollView = () => {
               },
               upc: [ "888462079525" ],
               description: "This item is actually really cool!",
-              imageUrls: ["https://m.media-amazon.com/images/I/61JpqnUgmSL.jpg"]
+              imageUrls: ["https://www.abbierabinowitz.com/wp-content/uploads/2020/09/blank-sq-canvas.png"]
             },
             condition: "USED_EXCELLENT",
             packageWeightAndSize: {
