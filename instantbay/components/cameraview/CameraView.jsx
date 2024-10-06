@@ -8,7 +8,8 @@ import { Buffer } from 'buffer';
 const WEBSOCKET_URL = 'ws://localhost:8765';
 const CHUNK_SIZE = 1000000; // 16KB chunks, adjust as needed
 
-const CameraView = () => {
+const CameraView = ({ navigation }) => {
+
   const [hasPermission, setHasPermission] = useState(false);
   const [isStreaming, setIsStreaming] = useState(false);
   const [deviceIndex, setDeviceIndex] = useState(0);
@@ -139,6 +140,9 @@ const CameraView = () => {
 			{isStreaming ? 'Stop Streaming' : 'Start Streaming'}
 		  </Text>
 		</TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Scroll')}>
+          <Text style={styles.buttonText}>Done recording</Text>
+       </TouchableOpacity>
 	  </View>
 	</View>
   );
