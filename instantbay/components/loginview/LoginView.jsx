@@ -10,14 +10,15 @@ const LoginView = ({ navigation }) => {
 
   return (
     <View style={{flex: 1}}>
-      <View>
-        <Video
-            source={require('../../assets/loginbackground.mp4')} // Can be a URL or a local file.
-            paused={false}
-            muted={true}
-            style={styles.video}
+      <Video
+          source={require("../../assets/loginbackground.mp4")}
+          style={styles.backgroundVideo}
+          muted={true}
+          repeat={true}
+          resizeMode={"cover"}
+          rate={1.0}
+          ignoreSilentSwitch={"obey"}
         />
-      </View>
       <View style={styles.upperContainer}>
         <Text style={styles.title}>Welcome to InstantBay!</Text>
         <TouchableOpacity
@@ -122,10 +123,15 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection:'row'
   },
-  video: {
-    width: '100%',
-    height: 300,
-  },
+  backgroundVideo: {
+    height: '100%',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    alignItems: "stretch",
+    bottom: 0,
+    right: 0
+  }
 });
 
 export default LoginView;
