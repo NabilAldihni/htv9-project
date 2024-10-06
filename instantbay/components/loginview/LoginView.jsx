@@ -21,9 +21,15 @@ const LoginView = ({ navigation }) => {
         <Text style={styles.title}>Welcome to QuickBay!</Text>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('InputItems')}
+          onPress={() => navigation.navigate('Camera')}
         >
           <Text style={styles.buttonText}>Start Scanning</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('InputItems')}
+        >
+          <Text style={styles.buttonText}>Input items manually</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.lowerContainer}>
