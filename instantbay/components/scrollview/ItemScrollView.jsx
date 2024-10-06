@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { FlatList, View, StyleSheet, TouchableOpacity, Text, ActivityIndicator, TextInput } from 'react-native'
 import SellerItem from './SellerItem'
+import FinalPage from '../final_page/FinalPage';
+import { useNavigation } from '@react-navigation/native';
 
 const ItemScrollView = () => {
+  const navigation = useNavigation();
   const [selectedAll, setSelectedAll] = useState(false)
   const [deselectedAll, setDeselectedAll] = useState(false)
   const [sellerItems, setSellerItems] = useState([])
@@ -11,14 +14,14 @@ const ItemScrollView = () => {
   const [isSellingItems, setIsSellingItems] = useState(false)
 
   const detectedObjects = ["Air Jordans red", "Dell optiplex 7060"];
-  const EBAY_API_TOKEN = `v^1.1#i^1#p^3#f^0#r^0#I^3#t^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`;
+  const EBAY_API_TOKEN = `v^1.1#i^1#f^0#I^3#r^0#p^3#t^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`;
   const EBAY_API_URL = "https://api.ebay.com";
-  let resultList = [];
+  const [resultList, setResultList] = useState([]);
 
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await fetch(`${EBAY_API_URL}/buy/browse/v1/item_summary/search?q=thinkpad&limit=5`, {
+        const response = await fetch(`${EBAY_API_URL}/buy/browse/v1/item_summary/search?q=mice&limit=3`, {
           headers: {
             'Authorization': `Bearer ${EBAY_API_TOKEN}`,
             'Content-Type': 'application/json',
@@ -92,12 +95,12 @@ const ItemScrollView = () => {
 
   const sellSelectedItems = useCallback(async () => {
     setIsSellingItems(true);
+    const publishedItems = [];
     try {
-      // Get selected items
-      console.log(resultList);
+      const selectedItems = resultList;
+      console.log(selectedItems);
       
-      // Perform operations for each selected item
-      for (const item of resultList) {
+      for (const item of selectedItems) {
         // Example API call to create a listing
         const inventoryResponse = await fetch(`${EBAY_API_URL}/sell/inventory/v1/inventory_item/${item.id}`, {
           method: 'PUT',
@@ -116,7 +119,7 @@ const ItemScrollView = () => {
               description: "This item is actually really cool!",
               imageUrls: ["https://m.media-amazon.com/images/I/61JpqnUgmSL.jpg"]
             },
-            condition: item.condition,
+            condition: "USED_EXCELLENT",
             packageWeightAndSize: {
               dimensions: {
                 height: 5,
@@ -198,18 +201,22 @@ const ItemScrollView = () => {
           throw new Error(`Failed to publish offer ${offerId} for item ${item.id}, error: ${await publishResponse.text()}`);
         }
 
-        console.log(`Successfully published offer ${offerId} for item ${item.id}`);
+        const publishData = await publishResponse.json();
+        const listingId = publishData.listingId;
+        publishedItems.push({ id: listingId, name: item.name });
+
+        console.log(`Successfully published offer ${offerId} for item ${item.id}, listing ID: ${listingId}`);
       }
 
-      // After all operations are complete, you might want to refresh the item list or show a success message
-      alert('Successfully created, offered, and published all selected items!');
+      // After all operations are complete, navigate to the FinalPage
+      navigation.navigate('FinalPage', { publishedItems: publishedItems });
     } catch (error) {
       console.error('Error in selling process:', error);
       alert('An error occurred while processing the items. Please try again.');
     } finally {
       setIsSellingItems(false);
     }
-  }, [sellerItems]);
+  }, [resultList, navigation]);
 
   if (isLoading || isSellingItems) {
     return (
