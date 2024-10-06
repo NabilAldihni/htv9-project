@@ -27,8 +27,8 @@ const LoginView = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <View style={styles.lowerContainer}>
-        <Text>
-
+        <Text style={{color: '#1D1D1F', fontWeight: '600', alignContent: 'center', alignItems:'center', textAlign:'center', padding: 15, fontSize: 16, width: '85%' }}>
+        QuickBay is an innovative mobile application designed to promote sustainability and supporting the circular economy. By allowing users to easily scan items, QuickBay helps individuals identify potential products they can sell on eBay, reducing waste and encouraging a culture of reusability.
         </Text>
       </View>
     </View>
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   lowerContainer:{
-    backgroundColor: '#666B6A',
+    backgroundColor: '#DAD7CD',
     borderTopRightRadius: 40,
     borderTopLeftRadius: 40,
     flex: 2,
@@ -51,9 +51,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    padding: 10,
-    backgroundColor: '#72A276',
-    borderRadius: 5,
+    padding: 14,
+    backgroundColor: '#3A5A40',
+    borderRadius: 10,
     elevation: 3,
   },
   loginbutton: {
