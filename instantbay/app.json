@@ -14,14 +14,19 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.instantbay"
+      "bundleIdentifier": "com.anonymous.instantbay",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app needs access to your camera to enable video streaming.",
+        "NSMicrophoneUsageDescription": "This app needs access to your microphone to enable audio streaming."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.instantbay"
+      "package": "com.anonymous.instantbay",
+      "permissions": ["CAMERA", "RECORD_AUDIO"]
     },
     "web": {
       "bundler": "metro",
@@ -29,8 +34,12 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router",
-      "react-native-vision-camera"
+      [
+        "react-native-vision-camera",
+        {
+          "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
