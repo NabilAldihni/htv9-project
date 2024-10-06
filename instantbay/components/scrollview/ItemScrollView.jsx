@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { FlatList, View, StyleSheet, TouchableOpacity, Text, ActivityIndicator, TextInput } from 'react-native'
 import SellerItem from './SellerItem'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const ItemScrollView = () => {
   const [selectedAll, setSelectedAll] = useState(false)
@@ -255,7 +256,7 @@ const ItemScrollView = () => {
         renderItem={({ item }) => 
           <View style={styles.itemContainer}>
             <SellerItem forceSelect={selectedAll} forceDeselect={deselectedAll} item={item} list={resultList}/>
-            <View style={{padding:5, backgroundColor: '#F5F5F7', borderRadius:5}}>
+            <View style={{alignItems: 'center', alignContent:'flex-start' ,paddingBottom:10, backgroundColor: '#F5F5F7', borderRadius:5}}>
               <View style={styles.textinput}>
                 <Text style={{paddingHorizontal:12, fontWeight:'bold'}}>Name:</Text>
                 <TextInput 
@@ -282,6 +283,7 @@ const ItemScrollView = () => {
       />
       
       <View style={styles.footer}>
+      <FontAwesomeIcon icon="fas fa-shopping-cart" />
         <TouchableOpacity 
           style={styles.sellButton}
           onPress={sellSelectedItems}
@@ -297,15 +299,15 @@ const ItemScrollView = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F7',
+    backgroundColor: '#151515',
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 16,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#1E1E1E',
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E5E5',
+    borderBottomColor: '#1E1E1E',
   },
   headerButton: {
     paddingVertical: 8,
@@ -324,14 +326,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#FF3B30',
   },
   list: {
+    alignSelf: 'center',
     flex: 1,
-    backgroundColor: '#E6E8E6'
+    width: '85%',
   },
   itemContainer: {
     backgroundColor: '#fff',
     marginHorizontal: 16,
-    marginVertical: 8,
-    borderRadius: 12,
+    marginVertical: 30,
+    borderRadius: 25,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -340,12 +343,12 @@ const styles = StyleSheet.create({
   },
   footer: {
     padding: 16,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#1E1E1E',
     borderTopWidth: 1,
-    borderTopColor: '#E5E5E5'
+    borderTopColor: '#1E1E1E'
   },
   sellButton: {
-    backgroundColor: '#34C759',
+    backgroundColor: '#7DB081',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 12,
@@ -386,11 +389,11 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   textinput:{
-    fontWeight: '600',
+    fontWeight: '500',
     backgroundColor:'#F5F5F7',
     padding: 5,
     width: '50%',
-    flexDirection:'row'
+    flexDirection:'row',
   }
 })
 
