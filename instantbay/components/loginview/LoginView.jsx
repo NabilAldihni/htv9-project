@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 
 const LoginView = ({navigation}) => {
@@ -29,7 +29,7 @@ const LoginView = ({navigation}) => {
       <TouchableOpacity
         style={buttonStyle}
         onPress={() => {
-          navigation.navigate('Camera')
+          navigation.navigate('Scroll')
         }}
       >
       <Text style={{ color: '#fff', fontSize: '16px' }}>Go to Items</Text>
