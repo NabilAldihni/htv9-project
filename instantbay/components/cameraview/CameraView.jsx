@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, PermissionsAndroid, Platform 
 import { Camera, useCameraDevices } from 'react-native-vision-camera';
 
 const CameraView = () => {
+
   const [hasPermission, setHasPermission] = useState(false);
   const [cameraIndex, setCameraIndex] = useState("0");
   const devices = useCameraDevices();

@@ -28,7 +28,7 @@ const LoginView = ({navigation}) => {
       <TouchableOpacity
         style={buttonStyle}
         onPress={() => {
-          navigation.navigate('Scroll')
+          navigation.navigate('Camera')
         }}
       >
       <Text style={{ color: '#fff', fontSize: '16px' }}>Go to Items</Text>
