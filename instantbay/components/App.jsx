@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ItemScrollView from './scrollview/ItemScrollView';
+import CameraView from './cameraview/CameraView';
 import LoginView from './loginview/LoginView';
 
 
