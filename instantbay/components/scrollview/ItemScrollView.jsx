@@ -10,6 +10,7 @@ const ItemScrollView = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [editedItems, setEditedItems] = useState({});
   const detectedObjects = ["Air Jordans red", "Dell optiplex 7060"];
+  let resultList = [];
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -40,7 +41,10 @@ const ItemScrollView = () => {
         // Set some dummy data in case of error
         setSellerItems([
           {"id": "1", "name": "Default item 1", "price": "599.99"},
-          {"id": "2", "name": "Default item 2", "price": "499.99"}
+          {"id": "3", "name": "Default item 3", "price": "499.99"},
+          {"id": "4", "name": "Default item 4", "price": "499.99"},
+          {"id": "5", "name": "Default item 5", "price": "499.99"},
+          {"id": "6", "name": "Default item 6", "price": "499.99"}
         ]);
       } finally {
         setIsLoading(false);
@@ -113,7 +117,7 @@ const ItemScrollView = () => {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => 
           <View style={styles.itemContainer}>
-            <SellerItem forceSelect={selectedAll} forceDeselect={deselectedAll} name={item.name} price={item.price} />
+            <SellerItem forceSelect={selectedAll} forceDeselect={deselectedAll} item={item} list={resultList}/>
             <View style={{padding:5, backgroundColor: '#F5F5F7', borderRadius:5}}>
               <View style={styles.textinput}>
                 <Text style={{paddingHorizontal:12, fontWeight:'bold'}}>Name:</Text>
@@ -141,7 +145,9 @@ const ItemScrollView = () => {
       />
       
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.sellButton}>
+        <TouchableOpacity style={styles.sellButton} onPress={()=>{
+          console.log(resultList)
+          }}>
           <Text style={styles.buttonText}>Sell Selected Items</Text>
         </TouchableOpacity>
       </View>      
