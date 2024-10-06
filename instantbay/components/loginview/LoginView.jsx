@@ -6,8 +6,6 @@ import Video from 'react-native-video';
 
 const LoginView = ({ navigation }) => {
 
-  const [username_password, setUsername_password]=useState(['placeholderUsername', 'placeholderPassword'])
-
   return (
     <View style={{flex: 1}}>
       <Video

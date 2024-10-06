@@ -51,14 +51,19 @@ const ItemScrollView = () => {
     fetchItems();
   }, []);
 
-  if (isLoading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#0000ff" />
-        <Text style={styles.loadingText}>Processing...</Text>
-      </View>
-    );
-  }
+  // New useEffect to update sellerItems after render
+  useEffect(() => {
+    if (Object.keys(editedItems).length > 0) {
+      setSellerItems(prevItems =>
+        prevItems.map(item => {
+          if (editedItems[item.id]) {
+            return { ...item, ...editedItems[item.id] };
+          }
+          return item;
+        })
+      );
+    }
+  }, [editedItems]);
 
   const handleItemChange = (id, field, value) => {
     setEditedItems(prev => ({
@@ -70,13 +75,14 @@ const ItemScrollView = () => {
     }));
   };
 
-  const updateItemValues = (id) => {
-    setSellerItems(prevItems => 
-      prevItems.map(item => 
-        item.id === id ? { ...item, ...editedItems[id] } : item
-      )
+  if (isLoading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+        <Text style={styles.loadingText}>Processing...</Text>
+      </View>
     );
-  };
+  }
 
   return (
     <View style={styles.container}>
@@ -111,27 +117,26 @@ const ItemScrollView = () => {
             <SellerItem forceSelect={selectedAll} forceDeselect={deselectedAll} name={item.name} price={item.price} />
             <View style={{padding:5, backgroundColor: '#F5F5F7', borderRadius:5}}>
               <View style={styles.textinput}>
-
                 <Text style={{paddingHorizontal:12, fontWeight:'bold'}}>Name:</Text>
-                <TextInput style={{paddingHorizontal:15}} defaultValue={item.name}
-                onChangeText={(text) => handleItemChange(item.id, 'name', text)}
-                inputMode='text' multiline={false}/>
-              
+                <TextInput 
+                  style={{paddingHorizontal:15}} 
+                  value={item.name}
+                  onChangeText={(text) => handleItemChange(item.id, 'name', text)}
+                  inputMode='text' 
+                  multiline={false}
+                />
               </View>
               <View style={styles.textinput}>
-
                 <Text style={{paddingHorizontal:15, fontWeight:'bold'}}>Price:</Text>
-                <TextInput style={{paddingHorizontal:15}} defaultValue={item.price}
-                onChangeText={(text) => handleItemChange(item.id, 'price', text)}
-                inputMode='numeric' multiline={false}/>
-
+                <TextInput 
+                  style={{paddingHorizontal:15}} 
+                  value={item.price}
+                  onChangeText={(text) => handleItemChange(item.id, 'price', text)}
+                  inputMode='numeric' 
+                  multiline={false}
+                />
               </View>
             </View>
-            <TouchableOpacity onPress={() => updateItemValues(item.id)}>
-              <View style={styles.editButton} onPress={()=>{setEditVisible(true)}}>
-                <Text style={styles.buttonText}>Update Values</Text>
-              </View>
-            </TouchableOpacity>
           </View>
         }
       />
