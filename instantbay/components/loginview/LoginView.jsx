@@ -17,6 +17,7 @@ const LoginView = ({ navigation }) => {
           rate={1.0}
           ignoreSilentSwitch={"obey"}
         />
+        <View style={{width: '100%', height: '100%', backgroundColor:'rgba(0,0,0,0.4)', position: 'absolute'}}></View>
       <View style={styles.upperContainer}>
         <Text style={styles.title}>Welcome to InstantBay!</Text>
         <TouchableOpacity
@@ -51,7 +52,7 @@ const LoginView = ({ navigation }) => {
         </View>
         </View>
         <View style={{padding:7}}>
-          <TouchableOpacity style={styles.loginbutton}>
+          <TouchableOpacity style={styles.loginbutton} onPress={()=>navigation.navigate("Scroll")}>
             <Text style={styles.loginbuttonText}>Log In</Text>
           </TouchableOpacity>
         </View>
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   lowerContainer:{
-    backgroundColor: '#CED4DA',
+    backgroundColor: '#666B6A',
     borderTopRightRadius: 40,
     borderTopLeftRadius: 40,
     flex: 2,
@@ -77,13 +78,13 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 10,
-    backgroundColor: '#007BFF',
+    backgroundColor: '#72A276',
     borderRadius: 5,
     elevation: 3,
   },
   loginbutton: {
     padding: 15,
-    backgroundColor: '#4361EE',
+    backgroundColor: '#72A276',
     fontSize: '30',
     borderRadius: 10,
     elevation: 3,
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     color: '#fff',
-    fontWeight: '500',
+    fontWeight: '700',
     textAlign: 'center',
   },
   loginbuttonText: {
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: '700',
     color: '#F5F5F7',
     marginBottom: 20,
