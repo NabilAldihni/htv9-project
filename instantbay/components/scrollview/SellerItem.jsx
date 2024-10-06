@@ -20,12 +20,16 @@ const SellerItem = (props) => {
     
     if (newCheckedState) {
       // Add item to the list when checked
-      props.list.push(props.item)
+      if(!props.list.includes(props.item)){
+        props.list.push(props.item)
+      }
     } else {
       // Remove item from the list when unchecked
       const index = props.list.findIndex(item => item.id === props.item.id)
       if (index !== -1) {
-        props.list.splice(index, 1)
+        if (props.list.includes(props.item)) {
+          props.list.splice(index, 1)
+        }
       }
     }
 

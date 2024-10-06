@@ -76,6 +76,10 @@ const ItemScrollView = () => {
     }
   }, [editedItems]);
 
+  useEffect(() => {
+    setResultList([]);
+  }, []);
+
   const handleItemChange = (id, field, value) => {
     setEditedItems(prev => ({
       ...prev,
@@ -89,12 +93,12 @@ const ItemScrollView = () => {
   const sellSelectedItems = useCallback(async () => {
     setIsSellingItems(true);
     try {
-      const selectedItems = [
-        {"id": "3", "name": "Cool bottle", "price": "10", "condition": "NEW"}
-      ];
+      // Get selected items
+      console.log(resultList);
+      
       // Perform operations for each selected item
-      for (const item of selectedItems) {
-        // Create inventory item
+      for (const item of resultList) {
+        // Example API call to create a listing
         const inventoryResponse = await fetch(`${EBAY_API_URL}/sell/inventory/v1/inventory_item/${item.id}`, {
           method: 'PUT',
           headers: {
