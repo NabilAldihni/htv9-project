@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, PermissionsAndroid, Platform } from 'react-native';
 import { Camera, useCameraDevices } from 'react-native-vision-camera';
 
-const CameraView = () => {
+const CameraView = ({ navigation }) => {
 
   const [hasPermission, setHasPermission] = useState(false);
   const [cameraIndex, setCameraIndex] = useState("0");
@@ -46,7 +46,7 @@ const CameraView = () => {
         <TouchableOpacity style={styles.button} onPress={toggleCamera}>
           <Text style={styles.buttonText}>Switch Camera</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} >
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Scroll')}>
           <Text style={styles.buttonText}>Done recording</Text>
         </TouchableOpacity>
       </View>
