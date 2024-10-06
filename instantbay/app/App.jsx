@@ -1,11 +1,11 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native';
-import ItemScrollView from './scrollview/ItemScrollView';
+import LoginView from './views/loginview/LoginView';
 
 const App = () => {
   return (
     <View style={styles.container}>
-      <ItemScrollView />
+      <LoginView />
     </View>
   )
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
 
 const LoginView = () => {
   const buttonStyle = {
@@ -22,15 +23,15 @@ const LoginView = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <button
+    <View style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <TouchableOpacity
         style={buttonStyle}
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
       >
-        Go to Items
-      </button>
-    </div>
+        <Text>Go to Items</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 

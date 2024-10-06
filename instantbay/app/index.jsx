@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import App from "../components/App";
+import App from "./App";
 
 export default function Page() {
   return (
