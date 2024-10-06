@@ -38,7 +38,7 @@ const LoginView = ({ navigation }) => {
     shadowOpacity: 0.1,
     shadowRadius: 3.84,}}>
           <View style={styles.textinput}>
-            <TextInput placeholder='Username'/>
+            <TextInput style={{width:'100%'}} placeholder='Username'/>
           </View>
         </View>
         <View style={{padding:7, width: '60%', shadowColor: '#000',
@@ -49,7 +49,7 @@ const LoginView = ({ navigation }) => {
     shadowOpacity: 0.1,
     shadowRadius: 3.84,}}>
         <View style={styles.textinput}>
-          <TextInput placeholder='Password'/>
+          <TextInput style={{width:'100%'}} placeholder='Password'/>
         </View>
         </View>
         <View style={{padding:7}}>
@@ -112,7 +112,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    color: '#1D1D1F',
+    fontWeight: '700',
+    color: '#F5F5F7',
     marginBottom: 20,
   },
   textinput:{
