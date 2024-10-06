@@ -1,10 +1,5 @@
 import React from 'react';
-
-<<<<<<< HEAD
 import { View, Text, StyleSheet } from 'react-native';
-=======
-import { View, Text , StyleSheet} from 'react-native';
->>>>>>> 5b5a918192dffde11f0f89d05f86d6a544151498
 import { TouchableOpacity } from 'react-native';
 
 const LoginView = ({navigation}) => {
