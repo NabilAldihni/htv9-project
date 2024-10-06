@@ -14,6 +14,7 @@ const CameraView = ({ navigation }) => {
   const [isStreaming, setIsStreaming] = useState(false);
   const [deviceIndex, setDeviceIndex] = useState(0);
   const [device, setDevice] = useState(null);
+  const [capturedImage, setCapturedImage] = useState(null); // State to store captured image data
   const devices = useCameraDevices();
   const camera = useRef(null);
 
@@ -59,44 +60,55 @@ const CameraView = ({ navigation }) => {
 // 	}
 //   }, [lastMessage]);
 
-  const startStreaming = async () => {
+const startStreaming = async () => {
 	console.log('startStreaming function called');
 	if (camera.current) {
 	  setIsStreaming(true);
-
-	  console.log('Attempting to capture and send photo...');
+  
+	  console.log('Attempting to capture and send photos...');
 	  try {
 		if (readyState === ReadyState.OPEN && camera.current) {
-		  const photo = await camera.current.takePhoto({
-			quality: 50,
-			skipMetadata: true
-		  });
-		  console.log('Photo captured:', photo);
-
-		  const binaryData = await RNFS.readFile(photo.path, 'base64');
-		  const binaryBuffer = Buffer.from(binaryData, 'base64');
-		  console.log('Photo converted to binary buffer, size:', binaryBuffer.length);
-
-		  // Send photo in chunks
-		  for (let i = 0; i < binaryBuffer.length; i += CHUNK_SIZE) {
-			const chunk = binaryBuffer.slice(i, i + CHUNK_SIZE);
-			sendMessage(chunk);
-			console.log(`Sent chunk ${i / CHUNK_SIZE + 1}, size: ${chunk.length}`);
-			
-			// Add a small delay between chunks to avoid overwhelming the WebSocket
-			await new Promise(resolve => setTimeout(resolve, 50));
+		  const numberOfPictures = 5; // Number of pictures to take
+		  const captureInterval = 1000; // Interval between captures in milliseconds
+  
+		  for (let i = 0; i < numberOfPictures; i++) {
+			const photo = await camera.current.takePhoto({
+			  quality: 50,
+			  skipMetadata: true
+			});
+			console.log(`Photo ${i + 1} captured:`, photo);
+  
+			const binaryData = await RNFS.readFile(photo.path, 'base64');
+			const binaryBuffer = Buffer.from(binaryData, 'base64');
+			console.log(`Photo ${i + 1} converted to binary buffer, size:`, binaryBuffer.length);
+  
+			// Store the captured image data
+			setCapturedImage(photo.path);
+  
+			// Send photo in chunks
+			for (let j = 0; j < binaryBuffer.length; j += CHUNK_SIZE) {
+			  const chunk = binaryBuffer.slice(j, j + CHUNK_SIZE);
+			  sendMessage(chunk);
+			  console.log(`Sent chunk ${j / CHUNK_SIZE + 1} of photo ${i + 1}, size: ${chunk.length}`);
+			  
+			  // Add a small delay between chunks to avoid overwhelming the WebSocket
+			  await new Promise(resolve => setTimeout(resolve, 50));
+			}
+  
+			// Send an empty chunk to signal the end of the photo
+			sendMessage(new ArrayBuffer(0));
+			console.log(`Finished sending photo ${i + 1}`);
+  
+			// Wait for the specified interval before capturing the next photo
+			await new Promise(resolve => setTimeout(resolve, captureInterval));
 		  }
-
-		  // Send an empty chunk to signal the end of the photo
-		  sendMessage(new ArrayBuffer(0));
-		  console.log('Finished sending photo');
 		} else {
 		  console.error('WebSocket is not open or camera is not ready. WebSocket state:', readyState);
 		}
 	  } catch (err) {
-		console.error('Error capturing or sending photo:', err);
+		console.error('Error capturing or sending photos:', err);
 	  }
-	  // Set isStreaming to false after sending the image
+	  // Set isStreaming to false after sending the images
 	  setIsStreaming(false);
 	}
   };
@@ -140,7 +152,7 @@ const CameraView = ({ navigation }) => {
 			{isStreaming ? 'Stop Streaming' : 'Start Streaming'}
 		  </Text>
 		</TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Scroll')}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Scroll', { imagePath: capturedImage })}>
           <Text style={styles.buttonText}>Done recording</Text>
        </TouchableOpacity>
 	  </View>
